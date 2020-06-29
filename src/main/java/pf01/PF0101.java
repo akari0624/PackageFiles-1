@@ -355,6 +355,7 @@ public class PF0101 {
 			btGetFile.addActionListener(new GetFile());
 			btSaveFile.addActionListener(new SaveFile());
 			btSelectFile.addActionListener(new SelectFile());
+			btFoldInput.addActionListener(new ActionControlInWindowsOS());
 			btInput.addActionListener(new ActionControlInWindowsOS());
 			btOutScript.addActionListener(new ActionControlInWindowsOS());
 			btSwitch.addActionListener(new ActionControlInWindowsOS());
@@ -369,6 +370,7 @@ public class PF0101 {
 			btGetFile.addActionListener(new GetFile());
 			btSaveFile.addActionListener(new SaveFile());
 			btSelectFile.addActionListener(new SelectFile());
+			btFoldInput.addActionListener(new ActionControlInUnixLikeOS());
 			btInput.addActionListener(new ActionControlInUnixLikeOS());
 			btOutScript.addActionListener(new ActionControlInUnixLikeOS());
 			btSwitch.addActionListener(new ActionControlInUnixLikeOS());

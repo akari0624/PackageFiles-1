@@ -3,6 +3,7 @@ package main.java.pf01;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.awt.Label;
 import java.awt.TextArea;
 import java.awt.TextField;
@@ -35,6 +36,9 @@ public class PF0101 {
 	static Label lbSaveFile = new Label("目標路徑：");
 	static Label lbSelectFile = new Label("檔案位置：");
 	static Label lbTalbe = new Label("檔案列表：");
+	static Label lbInput = new Label("輸入");
+	static Label lbSwitch = new Label("列表切換");
+	static Label lbOutput = new Label("輸出");
 	static TextField tfGetFile = new TextField("", 30);
 	static TextField tfSaveFile = new TextField("", 30);
 	static TextField tfSelectFile = new TextField("", 30);
@@ -44,6 +48,7 @@ public class PF0101 {
 	static Button btSelectFile = new Button("瀏覽");
 	static Button btKeyin = new Button("輸入檔案位置");
 	static Button btInput = new Button("匯入純文字檔");
+	static Button btFoldInput = new Button("從來源路徑匯入");
 	static Button btPack = new Button("推送檔案");
 	static Button btClear = new Button("清除列表");
 	static Button btOutScript = new Button("匯出腳本");
@@ -63,11 +68,13 @@ public class PF0101 {
 		f1.setLayout(new java.awt.GridBagLayout());
 		f1.setDefaultCloseOperation(3);
 		f1.setFont(new Font("微軟正黑", Font.BOLD, 26));
-		java.awt.GridBagConstraints c1 = new java.awt.GridBagConstraints();
+		
+		GridBagConstraints c1 = new GridBagConstraints();
 		btGetFile.setBackground(new Color(220, 220, 255));
 		btSaveFile.setBackground(new Color(220, 220, 255));
 		btSelectFile.setBackground(new Color(220, 220, 255));
 		btKeyin.setBackground(new Color(220, 220, 255));
+		btFoldInput.setBackground(new Color(220, 220, 255));
 		btInput.setBackground(new Color(220, 220, 255));
 		btPack.setBackground(new Color(220, 220, 255));
 		btClear.setBackground(new Color(220, 220, 255));
@@ -77,6 +84,9 @@ public class PF0101 {
 		btADWebRoot.setBackground(new Color(220, 220, 255));
 		btADwebapp.setBackground(new Color(220, 220, 255));
 		btOutBat.setBackground(new Color(220, 220, 255));
+		lbInput.setAlignment(Label.CENTER);
+		lbOutput.setAlignment(Label.CENTER);
+		lbSwitch.setAlignment(Label.CENTER);
 
 		c1.gridx = 0;
 		c1.gridy = 0;
@@ -177,7 +187,11 @@ public class PF0101 {
 		c1.fill = 2;
 		c1.anchor = 17;
 		f1.add(btSelectFile, c1);
+		
+		
+		
 
+		//input function start
 		c1.gridx = 3;
 		c1.gridy = 7;
 		c1.gridwidth = 1;
@@ -186,7 +200,7 @@ public class PF0101 {
 		c1.weighty = 0.0D;
 		c1.fill = 2;
 		c1.anchor = 17;
-		f1.add(btKeyin, c1);
+		f1.add(lbInput, c1);
 
 		c1.gridx = 3;
 		c1.gridy = 8;
@@ -196,6 +210,7 @@ public class PF0101 {
 		c1.weighty = 0.0D;
 		c1.fill = 2;
 		c1.anchor = 17;
+		f1.add(btKeyin, c1);
 
 		c1.gridx = 3;
 		c1.gridy = 9;
@@ -205,7 +220,7 @@ public class PF0101 {
 		c1.weighty = 0.0D;
 		c1.fill = 2;
 		c1.anchor = 17;
-		f1.add(btPack, c1);
+		f1.add(btFoldInput, c1);
 
 		c1.gridx = 3;
 		c1.gridy = 10;
@@ -225,7 +240,7 @@ public class PF0101 {
 		c1.weighty = 0.0D;
 		c1.fill = 2;
 		c1.anchor = 17;
-		f1.add(btClear, c1);
+		f1.add(lbSwitch, c1);
 		
 
 		c1.gridx = 3;
@@ -236,6 +251,7 @@ public class PF0101 {
 		c1.weighty = 0.0D;
 		c1.fill = 2;
 		c1.anchor = 17;
+		f1.add(btClear, c1);
 
 		c1.gridx = 3;
 		c1.gridy = 13;
@@ -275,7 +291,32 @@ public class PF0101 {
 		c1.weighty = 0.0D;
 		c1.fill = 2;
 		c1.anchor = 17;
+		f1.add(lbOutput, c1);
+		
+		c1.gridx = 3;
+		c1.gridy = 18;
+		c1.gridwidth = 1;
+		c1.gridheight = 1;
+		c1.weightx = 0.0D;
+		c1.weighty = 0.0D;
+		c1.fill = 2;
+		c1.anchor = 17;
+		f1.add(btPack, c1);
+		
+		
+		c1.gridx = 3;
+		c1.gridy = 19;
+		c1.gridwidth = 1;
+		c1.gridheight = 1;
+		c1.weightx = 0.0D;
+		c1.weighty = 0.0D;
+		c1.fill = 2;
+		c1.anchor = 17;
 		f1.add(btOutBat, c1);
+		
+		//function end
+		
+		
 
 		c1.gridx = 0;
 		c1.gridy = 5;
@@ -285,7 +326,6 @@ public class PF0101 {
 		c1.weighty = 0.0D;
 		c1.fill = 2;
 		c1.anchor = 17;
-		f1.add(block, c1);
 
 		c1.gridx = 0;
 		c1.gridy = 6;
@@ -300,7 +340,7 @@ public class PF0101 {
 		c1.gridx = 0;
 		c1.gridy = 7;
 		c1.gridwidth = 3;
-		c1.gridheight = 12;
+		c1.gridheight = 14;
 		c1.weightx = 0.0D;
 		c1.weighty = 0.0D;
 		c1.fill = 2;

@@ -40,6 +40,8 @@ class ActionControlInWindowsOS implements ActionListener {
 			switchADwebapp();
 		} else if ("匯出Bat檔".equals(action)) {
 			outBat();
+		} else if ("從來源路徑匯入清單".equals(action)) {
+			folderInput();
 		} else {
 			JOptionPane.showMessageDialog(null, "按鍵錯誤", "警告", 2);
 		}
@@ -54,7 +56,7 @@ class ActionControlInWindowsOS implements ActionListener {
 			tablePath = "";
 			for (String tmp : temp) {
 				if (tmp.contains("/")) {
-					tmp = tmp.replace("/", "\\\\");
+					tmp = tmp.replace("/", "\\");
 				}
 				if ((tmp.length() > 0) && (!tmp.equals(""))) {
 					if (tmp.substring(0, 1).equals("\\")) {
@@ -81,7 +83,7 @@ class ActionControlInWindowsOS implements ActionListener {
 			tablePath = "";
 			for (String tmp : temp) {
 				if (tmp.contains("/")) {
-					tmp = tmp.replace("/", "\\\\");
+					tmp = tmp.replace("/", "\\");
 				}
 				if ((tmp.length() > 0) && (!tmp.equals(""))) {
 					if (tmp.substring(0, 1).equals("\\")) {
@@ -171,7 +173,7 @@ class ActionControlInWindowsOS implements ActionListener {
 		String[] temp = PF0101.tfSelectFile.getText().split(";");
 		for (String tmp : temp) {
 			if (tmp.contains("/")) {
-				tmp = tmp.replace("/", "\\\\");
+				tmp = tmp.replace("/", "\\");
 			}
 			if ((tmp.length() > 2) && ((tmp.substring(1, 2).equals(":")) || (tmp.substring(1, 2).equals("\\")))) {
 				tmp = tmp.substring(getPath.length() + 1);
@@ -194,7 +196,7 @@ class ActionControlInWindowsOS implements ActionListener {
 		PF0101.tfSaveFile.setBackground(new Color(255, 255, 255));
 		PF0101.tfSelectFile.setBackground(new Color(255, 255, 255));
 		PF0101.taTable.setBackground(new Color(255, 255, 255));
-		int sucCount=0,errCount=0;
+		int sucCount = 0, errCount = 0;
 		if (getPath.equals("")) {
 			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));
 			JOptionPane.showMessageDialog(null, "尚未輸入來源路徑", "警告", 2);
@@ -239,7 +241,7 @@ class ActionControlInWindowsOS implements ActionListener {
 		String[] temp = tablePath.split("\n");
 		for (String tmp : temp) {
 			if (tmp.contains("/")) {
-				tmp = tmp.replace("/", "\\\\");
+				tmp = tmp.replace("/", "\\");
 			}
 			if (!temp.equals("")) {
 				String[] box = tmp.split("\\\\");
@@ -290,11 +292,51 @@ class ActionControlInWindowsOS implements ActionListener {
 				}
 			}
 		}
-		okMes.append("推送檔案總數: "+temp.length+" 個, 成功推送: "+sucCount+" 個, 推送失敗: "+errCount+" 個\n");
+		okMes.append("推送檔案總數: " + temp.length + " 個, 成功推送: " + sucCount + " 個, 推送失敗: " + errCount + " 個\n");
 		String msg = okMes.append(errMes).append(creMes).append(sucMes).toString();
-		PF0101.taMes.append(msg.replace("\\\\", "\\"));
-		
+
 		JOptionPane.showMessageDialog(null, PF0101.taMes, PF0101.packageRecordTitle, 1);
+	}
+
+	public static void folderInput() {
+		String getPath = PF0101.tfGetFile.getText();
+		if (getPath.equals("")) {
+			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));
+			JOptionPane.showMessageDialog(null, "尚未輸入來源路徑", "警告", 2);
+			return;
+		}
+		if ((!getPath.substring(1, 2).equals(":")) && (!getPath.substring(1, 2).equals("\\"))) {
+			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));
+			JOptionPane.showMessageDialog(null, "來源路徑須為絕對路徑", "警告", 2);
+			return;
+		}
+		if (getPath.contains("/")) {
+			getPath = getPath.replace("/", "\\");
+		}
+		File folder = new File(getPath);
+		StringBuffer path = new StringBuffer("");
+		if (folder.exists() && folder.isDirectory()) {
+			getFiles(folder,path);
+			if(PF0101.taTable.getText().startsWith("操作")) {
+				PF0101.taTable.setText(path.toString());
+			} else {
+				PF0101.taTable.setText(PF0101.taTable.getText()+path.toString());
+			}
+		} else {
+			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));
+			JOptionPane.showMessageDialog(null, "來源路徑不存在或不為目錄", "警告", 2);
+			return;
+		}
+	}
+	
+	public static void getFiles(File folder,StringBuffer path) {
+		for(File f:folder.listFiles()) {
+			if(f.isDirectory()) {
+				getFiles(f, path);
+			} else {
+				path.append(f.getPath()+"\n");
+			}
+		}
 	}
 
 	public static void input() {
@@ -338,7 +380,8 @@ class ActionControlInWindowsOS implements ActionListener {
 				BufferedReader br = new BufferedReader(fr);
 				String input = new String();
 				while ((input = br.readLine()) != null) {
-					if (StringUtils.isNotBlank(PF0101.taTable.getText()) && PF0101.taTable.getText().startsWith("操作說明")) {
+					if (StringUtils.isNotBlank(PF0101.taTable.getText())
+							&& PF0101.taTable.getText().startsWith("操作說明")) {
 						PF0101.taTable.setText("");
 					}
 					if ((input.substring(1, 2).equals(":")) || (input.substring(1, 2).equals("\\"))) {
@@ -395,7 +438,7 @@ class ActionControlInWindowsOS implements ActionListener {
 				String[] temp = tablePath.split("\n");
 				for (String tmp : temp) {
 					if (tmp.contains("/")) {
-						tmp = tmp.replace("/", "\\\\");
+						tmp = tmp.replace("/", "\\");
 					}
 					fwriter.write("mkdir %savePath%\\" + tmp.substring(0, tmp.lastIndexOf("\\")) + "\r\n");
 					fwriter.write("copy /Y %getPath%\\" + tmp + " %savePath%\\" + tmp + "\r\n");

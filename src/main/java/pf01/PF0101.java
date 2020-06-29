@@ -26,7 +26,7 @@ public class PF0101 {
 			+ "–匯出Bat檔: 將輸入的檔案例表打包功能，\n  匯出成可於Windows環境下獨力執行的.bat檔\n" + "\n" 
 			+ "提醒說明:\n" 
 			+ "–若有重複檔案，此程式將自行覆蓋，請小心使用。\n"
-			+ "–若目標路徑為AP Server 等網路路徑，請先透過Windows檔案總管訪問，通過登入驗證後再做推送。\n";
+			+ "–若目標路徑為AP Server 等網路路徑，\n  請先透過Windows檔案總管訪問，通過登入驗證後再做推送。\n";
 	static final String packageRecordTitle = "推送檔案彙整";
 	static JFrame f1 = new JFrame("程式推送工具(Ver.20200625)");
 	static TextArea taTable = new TextArea(contentText, 25, 50);
@@ -48,7 +48,7 @@ public class PF0101 {
 	static Button btSelectFile = new Button("瀏覽");
 	static Button btKeyin = new Button("輸入檔案位置");
 	static Button btInput = new Button("匯入純文字檔");
-	static Button btFoldInput = new Button("從來源路徑匯入");
+	static Button btFoldInput = new Button("從來源路徑匯入清單");
 	static Button btPack = new Button("推送檔案");
 	static Button btClear = new Button("清除列表");
 	static Button btOutScript = new Button("匯出腳本");
@@ -62,7 +62,7 @@ public class PF0101 {
 
 	public static void main(String[] args) throws Exception {
 		f1.setLocation(300, 100);
-		f1.setSize(500, 580);
+		f1.setSize(550, 580);
 		f1.setBackground(new Color(220, 220, 255));
 		f1.addWindowListener(new WindowEventHandler());
 		f1.setLayout(new java.awt.GridBagLayout());

@@ -40,6 +40,8 @@ class ActionControlInUnixLikeOS implements ActionListener {
 			switchADwebapp();
 		} else if ("匯出Bat檔".equals(action)) {
 			outBat();
+		} else if ("從來源路徑匯入清單".equals(action)) {
+			folderInput();
 		} else {
 			JOptionPane.showMessageDialog(null, "按鍵錯誤", "警告", 2);
 		}
@@ -53,8 +55,8 @@ class ActionControlInUnixLikeOS implements ActionListener {
 			String[] temp = tablePath.split("\n");
 			tablePath = "";
 			for (String tmp : temp) {
-				if (tmp.contains("\\\\")) {
-					tmp = tmp.replace("\\\\", "/");
+				if (tmp.contains("\\")) {
+					tmp = tmp.replace("\\", "/");
 				}
 				if ((tmp.length() > 0) && (!tmp.equals(""))) {
 					if (tmp.substring(0, 1).equals("\\")) {
@@ -80,8 +82,8 @@ class ActionControlInUnixLikeOS implements ActionListener {
 			String[] temp = tablePath.split("\n");
 			tablePath = "";
 			for (String tmp : temp) {
-				if (tmp.contains("\\\\")) {
-					tmp = tmp.replace("\\\\", "/");
+				if (tmp.contains("\\")) {
+					tmp = tmp.replace("\\", "/");
 				}
 				if ((tmp.length() > 0) && (!tmp.equals(""))) {
 					if (tmp.substring(0, 1).equals("\\")) {
@@ -170,8 +172,8 @@ class ActionControlInUnixLikeOS implements ActionListener {
 
 		String[] temp = PF0101.tfSelectFile.getText().split(";");
 		for (String tmp : temp) {
-			if (tmp.contains("\\\\")) {
-				tmp = tmp.replace("\\\\", "/");
+			if (tmp.contains("\\")) {
+				tmp = tmp.replace("\\", "/");
 			}
 			// 進來的檔案路徑也都是絕對路徑 這裡用來源路徑的路徑除去 進來的檔案路徑裡相同的部份
 			tmp = tmp.substring(getPath.length() + 1);
@@ -238,8 +240,8 @@ class ActionControlInUnixLikeOS implements ActionListener {
 
 		String[] temp = tablePath.split("\n");
 		for (String tmp : temp) {
-			if (tmp.contains("\\\\")) {
-				tmp = tmp.replace("\\\\", "/");
+			if (tmp.contains("\\")) {
+				tmp = tmp.replace("\\", "/");
 			}
 			if (!temp.equals("")) {
 				String[] box = tmp.split("/");
@@ -295,6 +297,47 @@ class ActionControlInUnixLikeOS implements ActionListener {
 		PF0101.taMes.append(msg);
 		
 		JOptionPane.showMessageDialog(null, PF0101.taMes, PF0101.packageRecordTitle, 1);
+	}
+	
+	public static void folderInput() {
+		String getPath = PF0101.tfGetFile.getText();
+		if (getPath.equals("")) {
+			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));
+			JOptionPane.showMessageDialog(null, "尚未輸入來源路徑", "警告", 2);
+			return;
+		}
+		if ((!getPath.substring(1, 2).equals(":")) && (!getPath.substring(1, 2).equals("\\"))) {
+			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));
+			JOptionPane.showMessageDialog(null, "來源路徑須為絕對路徑", "警告", 2);
+			return;
+		}
+		if (getPath.contains("\\")) {
+			getPath = getPath.replace("\\", "/");
+		}
+		File folder = new File(getPath);
+		StringBuffer path = new StringBuffer("");
+		if (folder.exists() && folder.isDirectory()) {
+			getFiles(folder,path);
+			if(PF0101.taTable.getText().startsWith("操作")) {
+				PF0101.taTable.setText(path.toString());
+			} else {
+				PF0101.taTable.setText(PF0101.taTable.getText()+path.toString());
+			}
+		} else {
+			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));
+			JOptionPane.showMessageDialog(null, "來源路徑不存在或不為目錄", "警告", 2);
+			return;
+		}
+	}
+	
+	public static void getFiles(File folder,StringBuffer path) {
+		for(File f:folder.listFiles()) {
+			if(f.isDirectory()) {
+				getFiles(f, path);
+			} else {
+				path.append(f.getPath()+"\n");
+			}
+		}
 	}
 
 	public static void input() {
@@ -394,8 +437,8 @@ class ActionControlInUnixLikeOS implements ActionListener {
 				fwriter.write("set savePath=" + savePath + "\r\n");
 				String[] temp = tablePath.split("\n");
 				for (String tmp : temp) {
-					if (tmp.contains("\\\\")) {
-						tmp = tmp.replace("\\\\", "/");
+					if (tmp.contains("\\")) {
+						tmp = tmp.replace("\\", "/");
 					}
 					fwriter.write("mkdir %savePath%\\" + tmp.substring(0, tmp.lastIndexOf("\\")) + "\r\n");
 					fwriter.write("copy /Y %getPath%\\" + tmp + " %savePath%\\" + tmp + "\r\n");

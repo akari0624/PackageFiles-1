@@ -39,10 +39,10 @@ public class PF0101 {
 	static Label lbInput = new Label("¿é¤J");
 	static Label lbSwitch = new Label("¦Cªí¤Á´«");
 	static Label lbOutput = new Label("¿é¥X");
-	static TextField tfGetFile = new TextField("", 30);
-	static TextField tfSaveFile = new TextField("", 30);
-	static TextField tfSelectFile = new TextField("", 30);
-	static TextField tfHidden = new TextField("", 30);
+	static TextField tfGetFile = new TextField("", 35);
+	static TextField tfSaveFile = new TextField("", 35);
+	static TextField tfSelectFile = new TextField("", 35);
+	static TextField tfHidden = new TextField("", 35);
 	static Button btGetFile = new Button("ÂsÄý");
 	static Button btSaveFile = new Button("ÂsÄý");
 	static Button btSelectFile = new Button("ÂsÄý");

@@ -9,7 +9,7 @@ public class FocusContol implements FocusListener {
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		if(StringUtils.isNotBlank(PF0101.taTable.getText()) && PF0101.taTable.getText().startsWith("æ“ä½œèªªæ˜"))
+		if(StringUtils.isNotBlank(PF0101.taTable.getText()) && PF0101.taTable.getText().startsWith("¾Ş§@»¡©ú"))
 		PF0101.taTable.setText("");
 	}
 

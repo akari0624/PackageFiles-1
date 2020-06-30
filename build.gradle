@@ -7,12 +7,13 @@
  */
 
 
-
-
-
 plugins {
-    // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'application'
+}
+
+application {
+    mainClass = 'main.java.pf01.PF0101'
 }
 
 sourceCompatibility = 1.8

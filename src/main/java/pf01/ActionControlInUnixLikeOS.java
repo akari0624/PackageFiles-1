@@ -1,4 +1,4 @@
-package main.java.pf01;
+package pf01;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -14,10 +14,13 @@ import java.nio.channels.FileChannel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.apache.commons.lang.StringUtils;
 
 class ActionControlInUnixLikeOS implements ActionListener {
+	private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	public void actionPerformed(ActionEvent e) {
 		String action = new String(e.getActionCommand());
 		if ("²M°£¦Cªí".equals(action)) {

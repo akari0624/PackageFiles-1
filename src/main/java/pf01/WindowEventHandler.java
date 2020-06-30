@@ -1,9 +1,12 @@
-package main.java.pf01;
+package pf01;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class WindowEventHandler implements WindowListener {
+	private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	public void windowOpened(WindowEvent we) {
 	}
 

@@ -1,15 +1,18 @@
-package main.java.pf01;
+package pf01;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.apache.commons.lang.StringUtils;
 
 //Auto Complete
 public class SaveKeyinControlInWinOS implements KeyListener {
+	private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
 	@Override
 	public void keyTyped(KeyEvent e) {

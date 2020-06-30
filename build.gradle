@@ -13,7 +13,7 @@ plugins {
 }
 
 application {
-    mainClass = 'main.java.pf01.PF0101'
+    mainClass = 'pf01.PF0101'
 }
 
 sourceCompatibility = 1.8
@@ -31,7 +31,7 @@ dependencies {
 
     // https://mvnrepository.com/artifact/log4j/log4j
     compile group: 'log4j', name: 'log4j', version: '1.2.16'
-   
+       
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
@@ -58,7 +58,7 @@ jar {
     manifest {
         attributes(
             'Class-Path': '.',
-            'Main-Class': 'main.java.pf01.PF0101'
+            'Main-Class': 'pf01.PF0101'
         )
     }
     from {

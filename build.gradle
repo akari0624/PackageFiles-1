@@ -54,7 +54,6 @@ compileJava.options.forkOptions.executable = 'N:/jdk1.8.0_162/bin/javac'
 
 jar {
     baseName = 'PackageFiles'
-    version = '1.1.0'
     manifest {
         attributes(
             'Class-Path': '.',

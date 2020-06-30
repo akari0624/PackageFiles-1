@@ -261,7 +261,7 @@ class ActionControlInUnixLikeOS implements ActionListener {
 								checkFileName++;
 							}
 						}
-						if (checkFileName == 1) {
+						if (checkFileName == 1 || getFile.exists()) {
 							if (!saveFile.exists()) {
 								creMes.append(savePath + "/" + selectFilePath + "\n");
 								saveFile.mkdirs();
@@ -276,9 +276,6 @@ class ActionControlInUnixLikeOS implements ActionListener {
 							outChannel.close();
 							sucCount++;
 							selectFile.setLastModified(lastTime);
-						} else if (getFile.exists()) {
-							errMes.append("目標檔案大小寫錯誤： " + getPath + "/" + tmp + " \n");
-							errCount++;
 						} else {
 							errMes.append("目標檔案不存在： " + getPath + "/" + tmp + " \n");
 							errCount++;

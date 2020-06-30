@@ -261,7 +261,7 @@ class ActionControlInWindowsOS implements ActionListener {
 								checkFileName++;
 							}
 						}
-						if (checkFileName == 1) {
+						if (checkFileName == 1 || getFile.exists()) {
 							if (!saveFile.exists()) {
 								creMes.append(savePath + "\\" + selectFilePath + "\n");
 								saveFile.mkdirs();
@@ -276,9 +276,6 @@ class ActionControlInWindowsOS implements ActionListener {
 							outChannel.close();
 							sucCount++;
 							selectFile.setLastModified(lastTime);
-						} else if (getFile.exists()) {
-							errMes.append("來源檔案路徑大小寫錯誤： " + getPath + "\\" + tmp + " \n");
-							errCount++;
 						} else {
 							errMes.append("來源檔案不存在： " + getPath + "\\" + tmp + " \n");
 							errCount++;
@@ -294,7 +291,8 @@ class ActionControlInWindowsOS implements ActionListener {
 		}
 		okMes.append("推送檔案總數: " + temp.length + " 個, 成功推送: " + sucCount + " 個, 推送失敗: " + errCount + " 個\n");
 		String msg = okMes.append(errMes).append(creMes).append(sucMes).toString();
-
+		PF0101.taMes.append(msg);
+		
 		JOptionPane.showMessageDialog(null, PF0101.taMes, PF0101.packageRecordTitle, 1);
 	}
 
@@ -318,9 +316,9 @@ class ActionControlInWindowsOS implements ActionListener {
 		if (folder.exists() && folder.isDirectory()) {
 			getFiles(folder,path);
 			if(PF0101.taTable.getText().startsWith("操作")) {
-				PF0101.taTable.setText(path.toString());
+				PF0101.taTable.setText(path.toString().replace(getPath, ""));
 			} else {
-				PF0101.taTable.setText(PF0101.taTable.getText()+path.toString());
+				PF0101.taTable.setText(PF0101.taTable.getText()+path.toString().replace(getPath, ""));
 			}
 		} else {
 			PF0101.tfGetFile.setBackground(new Color(255, 160, 160));

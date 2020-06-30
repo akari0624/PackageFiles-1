@@ -1,8 +1,8 @@
-####  PackageFile
+# PackageFile
 
-# JAVA Swing program help people people to pick file and put them together in one time
+`JAVA Swing program help people people to pick file and put them together in one time`
 
-# 操作說明
+## 操作說明
 - 來源路徑: 指定本機檔案來源路徑
 `D:\project\workspace\web_moi_kcg`
 - 目標路徑: 指定推送檔案目的地路徑
@@ -12,6 +12,7 @@
 
 ## 功能說明
 - 輸入檔案位置: 提供可批次輸入本機來源路徑，依檔案位置欄位內容，批次列於檔案列表
+- 從來源路徑匯入清單: 提供匯入自指定來源路徑目錄下的檔案清單(自動探索子目錄)
 - 推送檔案: 提供可批次輸入本機來源路徑，依檔案列表的檔案清單內容，推送至目標路徑
 - 清除列表: 清空檔案列表內容
 - 匯入純文字檔: 以純文字檔案，將檔案內容匯入至檔案列表中

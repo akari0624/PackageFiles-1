@@ -12,21 +12,22 @@ import javax.swing.JFrame;
 
 public class PF0101 {
 
-	//static final String contentText = "1.)新增切換案鈕方便打包，\n  src←→classes，java←→class。\n\n2.)檔案位址請使用'\\'(左上右下斜線)做區隔。\n\n3.)多檔案位置可使用';'(分號)區隔位置。\n\n4.)若有重複檔案，此程式將自行覆蓋，請小心使用。\n\n5.)檔案母位置：為不打包部分，供檔案複製用。\n\n  例：D:\\project\\TBVD\\TBVD\\moiland-web100\\WebRoot\n\n6.)存檔位置：為檔案打包須存放之位置。\n\n  例：D:\\TBVD\\webapp\n\n7.)檔案位置：為須打包覆部分。\n\n  例：REG\\RAA01\\RAA0101.jsp\n\n8.)於檔案位置點擊Enter鍵可直接輸入。\n\n9.)如須抓取網路上之檔案，請於檔案母位置先行輸入IP\n\n10.)修改為打包時程式大小寫需相同\n\n11.)修改為可點選資料夾抓取以下所有檔案\n";
+	//static final String contentText = "1.)新增切換案鈕方便打包，\n    src←→classes，java←→class。\n\n2.)檔案位址請使用'\\'(左上右下斜線)做區隔。\n\n3.)多檔案位置可使用';'(分號)區隔位置。\n\n4.)若有重複檔案，此程式將自行覆蓋，請小心使用。\n\n5.)檔案母位置：為不打包部分，供檔案複製用。\n\n   例：D:\\project\\TBVD\\TBVD\\moiland-web100\\WebRoot\n\n6.)存檔位置：為檔案打包須存放之位置。\n\n   例：D:\\TBVD\\webapp\n\n7.)檔案位置：為須打包覆部分。\n\n   例：REG\\RAA01\\RAA0101.jsp\n\n8.)於檔案位置點擊Enter鍵可直接輸入。\n\n9.)如須抓取網路上之檔案，請於檔案母位置先行輸入IP\n\n10.)修改為打包時程式大小寫需相同\n\n11.)修改為可點選資料夾抓取以下所有檔案\n";
 	static final String contentText = "操作說明:\n" 
-			+ "–來源路徑: 指定本機檔案來源路徑 \n  D:\\project\\workspace\\web_moi_kcg\n"
-			+ "–目標路徑: 指定推送檔案目的地路徑 \n  \\\\127.0.0.1\\moiland\\webapp\n"
-			+ "–檔案位置: 輸入檔案名稱,可以用';'符號切分多個檔案 \n  WEB-INF\\src\\...\\AjaxReport.java; ADM\\ASL05\\ASL0502.jsp\n" + "\n"
+			+ "–來源路徑: 指定本機檔案來源路徑 \n   D:\\project\\workspace\\web_moi_kcg\n"
+			+ "–目標路徑: 指定推送檔案目的地路徑 \n   \\\\127.0.0.1\\moiland\\webapp\n"
+			+ "–檔案位置: 輸入檔案名稱,可以用';'符號切分多個檔案 \n   WEB-INF\\src\\...\\AjaxReport.java; ADM\\ASL05\\ASL0502.jsp\n" + "\n"
 			+ "功能說明:\n" 
-			+ "–輸入檔案位置: 提供可批次輸入本機來源路徑，\n  依檔案位置欄位內容，批次列於檔案列表\n"
-			+ "–推送檔案: 提供可批次輸入本機來源路徑，\n  依檔案列表的檔案清單內容，推送至目標路徑\n" + "–清除列表: 清空檔案列表內容\n"
-			+ "–匯入純文字檔: 以純文字檔案，將檔案內容匯入至檔案列表中\n" + "–切換原始/執行檔: 切換 java / classes 路徑\n  src←→classes，java←→class。\n"
-			+ "–加減WebRoot: 在檔案列表中每列前方加上'WebRoot\\\"前輟\n  WEB-INF←→WebRoot\\WEB-INF。\n"
-			+ "–加減webapp: 在檔案列表中每列前方加上'webapp\\\"前輟\n  WEB-INF←→webapp\\WEB-INF。\n"
-			+ "–匯出Bat檔: 將輸入的檔案例表打包功能，\n  匯出成可於Windows環境下獨力執行的.bat檔\n" + "\n" 
+			+ "–輸入檔案位置: 提供可批次輸入本機來源路徑，\n   依檔案位置欄位內容，批次列於檔案列表\n"
+			+ "–從來源路徑匯入清單: 提供匯入自指定來源路徑\n   目錄下的檔案清單(自動探索子目錄)。\n"
+			+ "–推送檔案: 提供可批次輸入本機來源路徑，\n   依檔案列表的檔案清單內容，推送至目標路徑\n" + "–清除列表: 清空檔案列表內容\n"
+			+ "–匯入純文字檔: 以純文字檔案，將檔案內容匯入至檔案列表中\n" + "–切換原始/執行檔: 切換 java / classes 路徑\n   src←→classes，java←→class。\n"
+			+ "–加減WebRoot: 在檔案列表中每列前方加上'WebRoot\\\"前輟\n   WEB-INF←→WebRoot\\WEB-INF。\n"
+			+ "–加減webapp: 在檔案列表中每列前方加上'webapp\\\"前輟\n   WEB-INF←→webapp\\WEB-INF。\n"
+			+ "–匯出Bat檔: 將輸入的檔案例表打包功能，\n   匯出成可於Windows環境下獨力執行的.bat檔\n" + "\n" 
 			+ "提醒說明:\n" 
 			+ "–若有重複檔案，此程式將自行覆蓋，請小心使用。\n"
-			+ "–若目標路徑為AP Server 等網路路徑，\n  請先透過Windows檔案總管訪問，通過登入驗證後再做推送。\n";
+			+ "–若目標路徑為AP Server 等網路路徑，\n   請先透過Windows檔案總管訪問，通過登入驗證後再做推送。\n";
 	static final String packageRecordTitle = "推送檔案彙整";
 	static JFrame f1 = new JFrame("程式推送工具(Ver.20200625)");
 	static TextArea taTable = new TextArea(contentText, 25, 50);
@@ -61,7 +62,7 @@ public class PF0101 {
 	static Label block = new Label("");
 
 	public static void main(String[] args) throws Exception {
-		f1.setLocation(300, 100);
+		f1.setLocation(600, 300);
 		f1.setSize(550, 580);
 		f1.setBackground(new Color(220, 220, 255));
 		f1.addWindowListener(new WindowEventHandler());
@@ -362,6 +363,8 @@ public class PF0101 {
 			btADWebRoot.addActionListener(new ActionControlInWindowsOS());
 			btADwebapp.addActionListener(new ActionControlInWindowsOS());
 			btOutBat.addActionListener(new ActionControlInWindowsOS());
+			tfGetFile.addKeyListener(new GetKeyinControlInWinOS());
+			tfSaveFile.addKeyListener(new SaveKeyinControlInWinOS());
 		} else {
 			// os 是 unix-like
 			btKeyin.addActionListener(new ActionControlInUnixLikeOS());
@@ -377,9 +380,10 @@ public class PF0101 {
 			btADWebRoot.addActionListener(new ActionControlInUnixLikeOS());
 			btADwebapp.addActionListener(new ActionControlInUnixLikeOS());
 			btOutBat.addActionListener(new ActionControlInUnixLikeOS());
+			tfGetFile.addKeyListener(new GetKeyinControlInUnixOS());
+			tfSaveFile.addKeyListener(new SaveKeyinControlInUnixOS());
 		}
 		taTable.addFocusListener(new FocusContol());
-		tfSaveFile.addKeyListener(new KeyinControl());
 		f1.setVisible(true);
 	}
 }

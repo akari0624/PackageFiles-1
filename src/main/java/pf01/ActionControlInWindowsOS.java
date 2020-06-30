@@ -250,8 +250,8 @@ class ActionControlInWindowsOS implements ActionListener {
 					selectFilePath = selectFilePath + "\\" + box[j];
 				}
 				try {
-					File saveFile = new File(savePath + "\\" + selectFilePath);
 					File getFile = new File(getPath + "\\" + tmp);
+					File saveFile = new File(savePath + "\\" + selectFilePath);
 					File selectFile = new File(savePath + "\\" + tmp);
 					String[] check = new File(getPath + "\\" + tmp).getParentFile().list();
 					if (check != null) {

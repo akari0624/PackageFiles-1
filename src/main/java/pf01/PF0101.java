@@ -1,4 +1,4 @@
-package main.java.pf01;
+package pf01;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -10,8 +10,12 @@ import java.awt.TextField;
 
 import javax.swing.JFrame;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+ 
 public class PF0101 {
 
+	private static final Logger log = LoggerFactory.getLogger(PF0101.class);
 	//static final String contentText = "1.)新增切換案鈕方便打包，\n    src←→classes，java←→class。\n\n2.)檔案位址請使用'\\'(左上右下斜線)做區隔。\n\n3.)多檔案位置可使用';'(分號)區隔位置。\n\n4.)若有重複檔案，此程式將自行覆蓋，請小心使用。\n\n5.)檔案母位置：為不打包部分，供檔案複製用。\n\n   例：D:\\project\\TBVD\\TBVD\\moiland-web100\\WebRoot\n\n6.)存檔位置：為檔案打包須存放之位置。\n\n   例：D:\\TBVD\\webapp\n\n7.)檔案位置：為須打包覆部分。\n\n   例：REG\\RAA01\\RAA0101.jsp\n\n8.)於檔案位置點擊Enter鍵可直接輸入。\n\n9.)如須抓取網路上之檔案，請於檔案母位置先行輸入IP\n\n10.)修改為打包時程式大小寫需相同\n\n11.)修改為可點選資料夾抓取以下所有檔案\n";
 	static final String contentText = "操作說明:\n" 
 			+ "–來源路徑: 指定本機檔案來源路徑 \n   D:\\project\\workspace\\web_moi_kcg\n"
@@ -62,6 +66,8 @@ public class PF0101 {
 	static Label block = new Label("");
 
 	public static void main(String[] args) throws Exception {
+		log.info("=============");
+		log.debug("=============");
 		f1.setLocation(600, 300);
 		f1.setSize(550, 580);
 		f1.setBackground(new Color(220, 220, 255));

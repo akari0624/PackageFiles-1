@@ -1,4 +1,4 @@
-package main.java.pf01.event;
+package pf01.event;
 
 import java.awt.event.ActionEvent;
 import java.io.File;

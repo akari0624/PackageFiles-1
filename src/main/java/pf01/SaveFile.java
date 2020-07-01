@@ -1,11 +1,14 @@
-package main.java.pf01;
+package pf01;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFileChooser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SaveFile implements ActionListener {
+	private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	public void actionPerformed(ActionEvent ae) {
 		JFileChooser chooser = new JFileChooser(PF0101.tfSaveFile.getText());
 		chooser.setMultiSelectionEnabled(false);
